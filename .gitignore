@@ -1,0 +1,4 @@
+vendor/
+
+ulog/example/simple/*.log
+/.idea/

@@ -1,0 +1,8 @@
+---
+ulog:
+  defaultLevel: "info"
+  console: true
+  name: myApp
+  rotation:
+    maxSize: 1024 # 1024Mb
+    maxAge: 7

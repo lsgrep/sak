@@ -1,0 +1,36 @@
+version: 2
+jobs:
+  test-build-utils:
+    docker:
+      - image: circleci/golang:1.10.3
+    environment:
+      GOPATH: /home/circleci/go
+    working_directory: /home/circleci/go/src/github.com/lsgrep/sak
+    steps:
+      - checkout
+      - run:
+          name: Bash fix
+          command: |
+            echo 'export PATH=$PATH:$GOPATH/bin' >> $BASH_ENV
+
+
+      - run:
+          name: Test & Lint
+          command: |
+            GO_PACKAGES=$(go list ./... | grep -v vendor)
+            GO_PACKAGES_FOR_VET=$(go list ./... | grep -v 'timeseries\|notification\|ueth\|utime')
+            go vet $GO_PACKAGES_FOR_VET
+            go test $GO_PACKAGES
+            #go get github.com/alecthomas/gometalinter
+            #gometalinter --install >> /dev/null
+            #gometalinter --exclude=vendor --disable=golint ./... || true
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - test-build-utils:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only: /.*/

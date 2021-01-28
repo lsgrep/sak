@@ -1,0 +1,10 @@
+---
+ulog:
+  defaultLevel: "info"
+  console: true
+  name: myApp
+  rotation:
+    maxSize: 1024 # 1024Mb
+    maxAge: 7  # days to retain old logs
+    maxBackups: 7 # number of old logs to keep
+    compress: true # compress with gzip
