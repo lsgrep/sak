@@ -63,7 +63,7 @@ func ReportPanicf(format string, args ...interface{}) {
 	if raven.ProjectID() == "" {
 		return
 	}
-	raven.CaptureErrorAndWait(fmt.Errorf(format, args), nil)
+	raven.CaptureErrorAndWait(fmt.Errorf(format, args...), nil)
 }
 
 func ReportPanicln(args ...interface{}) {
