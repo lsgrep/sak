@@ -2,7 +2,7 @@ version: 2
 jobs:
   test-build-utils:
     docker:
-      - image: circleci/golang:1.10.3
+      - image: circleci/golang
     environment:
       GOPATH: /home/circleci/go
     working_directory: /home/circleci/go/src/github.com/lsgrep/sak

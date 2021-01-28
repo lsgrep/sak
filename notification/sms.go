@@ -47,6 +47,7 @@ func (t *twilio) SendSMS(to, body string) (*twilioResponse, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer resp.Body.Close()
 	tr := &twilioResponse{}
 	// if StatusCode is healthy, SMS is mostly probably has been queued
 	if resp.StatusCode >= 200 && resp.StatusCode < 300 {
